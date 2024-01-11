@@ -1,0 +1,18 @@
+"""
+给你一个字符串 s，由若干单词组成，单词前后用一些空格字符隔开。返回字符串中 最后一个 单词的长度。
+
+单词 是指仅由字母组成、不包含任何空格字符的最大子字符串。
+"""
+
+"""
+一开始想到jieba库，后来回想起来jieba库是用于中文分词，所以这边行不通
+"""
+class Solution:
+    def lengthOfLastWord(self,s:str):
+        return len(s.strip().split(' ')[-1])
+    #strip()用于去除字符串开头和结尾的空格、制表符\t，换行符\n等空白字符
+    #split()用于将字符串分割成子字符串，并返回一个由子字符串组成的列表。split()默认用空格作为分割，所以原代码可以改成.split()
+    #[-1]表示最后一个元素，这个要记住
+sol=Solution()
+res=sol.lengthOfLastWord('hello world')
+print(res)

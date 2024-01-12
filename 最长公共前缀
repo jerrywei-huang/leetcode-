@@ -1,0 +1,32 @@
+"""
+编写一个函数来查找字符串数组中的最长公共前缀。
+
+如果不存在公共前缀，返回空字符串 ""。
+"""
+
+#方法一
+from typing import List
+class Solution:
+    def longestCommonPrefix(self,strs:List[str]) -> str:
+        if not strs:
+            return ""
+        str0=min(strs)  #找到列表中最短的字符串
+        str1=max(strs)  #找到列表中最长的字符串
+        for i in range(len(str0)):
+            if str0[i] != str1[i]:
+                #输出从字符串开头到索引“i”处的子字符串，但不包括i处的。位置从0开始计算
+                return str0[:i] 
+        return str0
+sol=Solution()
+res=sol.longestCommonPrefix(['flower','fly','flight'])
+print(res)
+
+#方法二
+from typing import List
+import os
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        return os.path.commonprefix(strs) #直接调os库
+sol=Solution()
+res=sol.longestCommonPrefix(['flower','fly','flight'])
+print(res)

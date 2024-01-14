@@ -1,0 +1,36 @@
+"""
+给你两个字符串：ransomNote 和 magazine ，判断 ransomNote 能不能由 magazine 里面的字符构成。
+
+如果可以，返回 true ；否则返回 false 。
+
+magazine 中的每个字符只能在 ransomNote 中使用一次。
+
+与“双指针中的判断子序列”类似，区别在于该题不用一个挨着一个的相等
+"""
+
+# 该解法正跑过测试用例，但提交之后是错误的
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        if not ransomNote:
+            return True
+        i=0
+        for j in magazine:  
+            if j in ransomNote:
+                i+=1
+        if i == len(ransomNote):
+            return True
+        return False
+
+# 正确题解
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        m = list(magazine)
+        r = list(ransomNote)
+        j=0
+        for i in range(0, len(m)):
+            if m[i] in r:
+                r.remove(m[i])
+        if len(r) == 0:
+            return True
+        else:
+            return False

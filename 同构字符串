@@ -1,0 +1,25 @@
+"""
+给定两个字符串 s 和 t ，判断它们是否是同构的。
+
+如果 s 中的字符可以按某种映射关系替换得到 t ，那么这两个字符串是同构的。
+
+每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，
+相同字符只能映射到同一个字符上，字符可以映射到自己本身。
+"""
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        # map 函数是 Python 内置的函数，用于将一个函数应用于一个或多个可迭代对象的所有元素，返回一个迭代器。
+        #下面有map的例子
+        return list(map(s.index,s)) == list(map(t.index,t))
+sol = Solution()
+res = sol.isIsomorphic("egg","add")
+print(res)
+
+
+#map例子
+#给字符串q中的字符添加映射。从0开始
+q = "abc"
+result = list(map(q.index, q))
+print(result)
+
+

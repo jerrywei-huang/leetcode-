@@ -1,0 +1,26 @@
+"""
+给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+
+注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。
+"""
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        #defaultdict 是在普通字典的基础上提供了默认值功能，使得在处理缺失键时更加方便。
+        #在普通的 dict 中，如果你尝试访问一个不存在的键，会引发 KeyError。
+        dic=defaultdict(int)
+        #遍历字符串 s 中的每个字符，将字符出现的次数加入字典 dic。
+        for key in s:
+            dic[key] += 1
+        for key in t:
+            dic[key] -= 1
+        for value in dic.values():
+            #若dic中有value不为0，说明字符出现次数不一致，所以不是字母异位词
+            if value != 0:
+                return False
+        return True
+sol = Solution()
+res = sol.isAnagram("anagram","nagaram")
+print(res)

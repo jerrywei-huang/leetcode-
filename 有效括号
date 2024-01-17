@@ -1,0 +1,21 @@
+"""
+给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
+
+有效字符串需满足：
+
+左括号必须用相同类型的右括号闭合。
+左括号必须以正确的顺序闭合。
+每个右括号都有一个对应的相同类型的左括号。
+"""
+
+class Solution:
+    def isValid(self,s:str) -> bool:
+        #创建字典，左括号与右括号对应
+        dic = {'{':'}','[':']','(':')'}
+        stack =[]
+        for i in s:
+            if i in dic:
+                stack.append(i) #在栈末尾添加元素
+            elif not stack or dic[stack.pop()] != i: #栈中为空或者从栈输出的括号无法对应dic中的括号，就失败了
+                return False
+        return not stack #因为最后结果是bool，所以只要栈为空就会返回True

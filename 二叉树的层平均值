@@ -1,0 +1,32 @@
+"""
+给定一个非空二叉树的根节点 root , 
+以数组的形式返回每一层节点的平均值。与实际答案相差 10-5 以内的答案可以被接受。
+"""
+
+# Definition for a binary tree node.
+from collections import deque
+from typing import List,Optional
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+        if not root:
+            return []
+        ans=[]
+        #广度优先BFS
+        queue = deque([root])
+        while queue:
+            nowlen = len(queue)
+            nowlevelcount = 0
+            for _ in range(nowlen):#_表示一个占位符，并且该符号不会再后续用到，只是用做循环
+                node = queue.popleft()
+                nowlevelcount += node.val #这一层的节点之和
+                if node.right:
+                    queue.append(node.right) #在队列结尾加上右节点
+                if node.left:
+                    queue.append(node.left)
+            ans.append(nowlevelcount/nowlen) #计算平均值，并加入数组
+        return ans

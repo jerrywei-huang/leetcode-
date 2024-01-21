@@ -1,0 +1,23 @@
+"""
+给你一个整数数组 nums ，其中元素已经按 升序 排列，请你将其转换为一棵 高度平衡 二叉搜索树。
+
+高度平衡 二叉树是一棵满足「每个节点的左右两个子树的高度差的绝对值不超过 1 」的二叉树。
+
+ 
+"""
+
+from typing import List
+class TreeNode:
+     def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def sortedArrayToBST(self,nums:List[int]) -> TreeNode:
+        if not nums:
+            return None
+        mid = (len(nums)-1) // 2 #//表示整数除法，只留整数部分
+        root = TreeNode(nums[mid])#从给定的有序数组 nums 中取出中间索引 mid 处的值，并将其作为根节点的值。
+        root.left = self.sortedArrayToBST(nums[:mid]) #左闭右开
+        root.right = self.sortedArrayToBST(nums[mid+1:])
+        return root

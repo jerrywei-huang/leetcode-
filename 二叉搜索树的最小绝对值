@@ -1,0 +1,29 @@
+"""
+给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。
+
+差值是一个正数，其数值等于两值之差的绝对值。
+"""
+
+#二叉搜索树可以先想中序遍历
+from typing import Optional
+class TreeNode:
+     def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Sloution:
+    #中序遍历
+    def inOrder(self,root:TreeNode,res):
+        if not root:
+            return
+        self.inOrder(root.left,res)
+        res.append(root.val)
+        self.inOrder(root.right,res)
+    
+    def getMinimumDifference(self,root:TreeNode) -> int:
+        res = []
+        minRes = float('inf') #inf表示无穷大
+        self.inOrder(root,res)
+        for i in range(len(res)-1):
+            minRes = min(abs(res[i]-res[i+1]),minRes)
+        return minRes

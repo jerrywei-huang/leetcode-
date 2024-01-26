@@ -1,0 +1,25 @@
+"""
+给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。
+
+题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。
+
+请 不要使用除法，且在 O(n) 时间复杂度内完成此题。
+"""
+
+from typing import List
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        left_products = [1]*n #初始化所有元素为1
+        left_product = 1
+        for i in range(1,n): #从第二个元素开始循环，因为第一个元素左边没有元素
+            left_product *= nums[i-1]
+            left_products[i] = left_product
+        right_products = [1]*n
+        right_product = 1
+        for i in range(n-2,-1,-1): #从倒数第二个元素往前开始循环，因为倒数第一个元素没有右边元素
+            right_product *= nums[i+1]
+            right_products[i] = right_product
+        
+        result = [left_products[i]*right_products[i] for i in range(n)]
+        return result

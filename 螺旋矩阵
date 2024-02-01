@@ -1,0 +1,22 @@
+"""
+给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
+"""
+
+from typing import List
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        result = []
+        while matrix:
+            #步骤1：将矩阵的第一行添加到结果列表中，并移除矩阵的第一行
+            result += matrix.pop(0)#pop(0)从头部移除
+            if matrix and matrix[0]:
+                for row in matrix:
+                    result.append(row.pop())#pop()从尾部移除
+            if matrix:
+                #最后一行逆序加到结果中
+                result += matrix.pop()[::-1]
+            if matrix and matrix[0]:
+                for row in matrix[::-1]:
+                    result.append(row.pop(0))
+        return result
+                

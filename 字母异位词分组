@@ -1,0 +1,18 @@
+"""
+给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。
+
+字母异位词 是由重新排列源单词的所有字母得到的一个新单词。
+"""
+
+from collections import defaultdict
+from typing import List
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        #使用defaultdict来创建一个默认值为列表的哈希表
+        anagrams = defaultdict(list)
+        for word in strs:
+            sorted_words = ' '.join(sorted(word))
+            #sorted_words作为键，word作为值
+            anagrams[sorted_words].append(word)
+        #最后只返回列表中的值。不返回键
+        return list(anagrams.values())

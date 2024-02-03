@@ -1,0 +1,24 @@
+"""
+以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。
+请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。
+"""
+
+from typing import List
+class Solution:
+    def merge(self,intervals:List[List[int]]) -> List[List[int]]:
+        if not intervals:
+            return []
+        #按区间起始位置进行排序；就是按照区间的第一个元素作为排序的关键字
+        intervals.sort(key=lambda x: x[0])
+        #将第一个区间加入
+        merged = [intervals[0]]
+        for interval in intervals[1:]:
+            #当当前区间的第一个元素 小于等于 已合并区间的结束位置
+            #merged[-1][1]中[-1]表示最后一个元素，[1]表示第二个值，该题中表示结束位置
+            if interval[0] <= merged[-1][1]:
+                merged[-1][1] = max(interval[1],merged[-1][1])
+            else:
+                #没重叠。直接加入数组
+                merged.append(interval)
+        return merged
+                

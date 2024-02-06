@@ -1,0 +1,47 @@
+"""
+给你一个长度为 n 的链表，每个节点包含一个额外增加的随机指针 random ，该指针可以指向链表中的任何节点或空节点。
+
+构造这个链表的 深拷贝。 深拷贝应该正好由 n 个 全新 节点组成，其中每个新节点的值都设为其对应的原节点的值。新节点的 next 指针和 random 指针也都应指向复制链表中的新节点，并使原链表和复制链表中的这些指针能够表示相同的链表状态。
+
+复制链表中的指针都不应指向原链表中的节点 。
+"""
+
+
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head:
+            return None
+
+        # 第一遍遍历：复制每个节点并将其插入到原节点的后面
+        curr = head
+        while curr:
+            new_node = Node(curr.val)
+            new_node.next = curr.next
+            curr.next = new_node
+            curr = new_node.next
+
+        # 第二遍遍历：设置新节点的 random 指针
+        curr = head
+        while curr:
+            if curr.random:
+                curr.next.random = curr.random.next
+            curr = curr.next.next
+
+        # 第三遍遍历：将新节点从原链表中拆分出来，恢复原链表，同时构建深拷贝链表
+        dummy = Node(0)
+        new_curr = dummy
+        curr = head
+        while curr:
+            new_curr.next = curr.next
+            new_curr = new_curr.next
+            curr.next = curr.next.next
+            curr = curr.next
+
+        return dummy.next

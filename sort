@@ -1,0 +1,26 @@
+"""
+有一个数据库，partychen想让你按照从最小到最大元素的顺序对数据库数据进行排序，然后查询：“哪个元素按其值是第i个？” - 其中i是其中的自然数范围从 1 到 N。
+
+它应该能够快速处理这样的查询。
+
+输入格式
+问题的标准输入由两部分组成。首先，编写一个数据库，然后是一系列查询。数据库的格式很简单：第一行有一个数字
+，在接下来的 N 行中，每行有一个任意顺序的数据库编号。查询序列的编写也很简单：在序列的第一行中有多个查询k
+已写入，并在接下来的k每行有一个查询。查询“哪个元素的值是第 i 个？”由数字 i 编码。
+"""
+#读取数据库大小
+N = int(input())
+#读取数据库,创建一个空列表
+database = []
+for _ in range(N):
+    element = int(input())
+    database.append(element)
+#进行排序,使用sorted默认排序
+sorted_database = sorted(database)
+
+#读取查询序列并相应查询
+M = int(input())
+for _ in range(M):
+    query = int(input())
+    result = sorted_database(query-1)
+    print(result)

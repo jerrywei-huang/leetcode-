@@ -1,0 +1,37 @@
+"""
+编写一个程序，计算两个整数之和的位数
+a和b
+输入的第一行给出案例数。
+测试用例由两个整数组成a和b在一行中由空格分隔
+"""
+
+#没有输出个数，没有注意格式
+def digit_sum(num):
+    if num == 0:
+        return 1
+    count = 0
+    while num != 0:
+        count += 1
+        num //= 10
+    return count
+def calculate(a,b):
+    total = a+b
+    return digit_sum(total)
+
+num1 = 12
+num2 = 1
+result = calculate(num1,num2)
+print("位数有：",result)
+
+
+#注意题目要求的输入和输出格式
+def digit_sum(n):
+    return len(str(n))
+#读测试用例数量
+T = int(input())
+#遍历
+for _ in range(T):
+    #读取测试用例输入，默认是空格
+    a,b = map(int,input().split())
+    sum_ab = a+b
+    print(digit_sum(sum_ab))

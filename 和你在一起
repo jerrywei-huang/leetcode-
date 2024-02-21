@@ -1,0 +1,32 @@
+"""
+有这么 n个数字，联成一排拼到一起便是我爱你的时间，那么我们会在一起多久呢
+
+例如: 
+ n=3时，3 个整数 13，312，343 联接成的最长时间为: 34331213。
+又如: 
+ n=4时，4 个整数 7，13，4，246 联接成的最长时间为: 7424613。
+
+输入格式
+ n(1<=n<=20)，表示 n个数。
+
+接下来一行n个正整数，大小不超过10的4次方。
+输出格式
+拼成的最长时间。
+"""
+
+#冒泡排序
+def larget(nums):
+    #range(len(nums))遍历索引
+    for i in range(len(nums)):
+        #i的排序，已经有元素在最终位置了，所以j有i个位置不用排序
+        for j in range(len(nums)-1-i):
+            #拼接字符串进行比较
+            if nums[j]+nums[j+1] < nums[j+1]+nums[j]:
+                nums[j],nums[j+1] = nums[j+1],nums[j]
+    #用空字符串作为连接符，返回拼接好的字符串
+    return ''.join(nums)
+n = int(input())
+nums = input().split()
+
+print(larget(nums))
+        

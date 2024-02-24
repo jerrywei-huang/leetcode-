@@ -1,0 +1,19 @@
+"""
+假设字符 'E' 代表单词 “Excellent”，字符 'C' 代表单词 “Cheer”，字符 'N' 代表单词 “Nice”，字符 'U' 代表单词 “Ultimate”，字符 'A' 代表单词 “Accept”。
+
+给你一个字符，请说出该字母所代表的单词。
+
+输入格式
+输入一个字符。输入的字符均为大写字母。
+
+输出格式
+输出字符所代表的单词，如果输入的字符不是 'E', 'C', 'N','U','A' 中的任何一个，则输出 Error。最后有一个换行符。
+"""
+
+dic = {'E':'Excellent','C':'Cheer','N':'Nice','U':'Ultimate','A':'Accept'}
+s = str(input())
+if s not in dic:
+    print('Error')
+    print()
+else:
+    print(dic[s])

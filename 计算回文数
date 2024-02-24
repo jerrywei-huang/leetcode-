@@ -1,0 +1,20 @@
+"""
+判断是否是回文数，
+如果不是回文数，用n+reverse_n继续判断
+"""
+
+#如果一个数不是回文数，通过计算，使其成为回文数，并返回计算次数
+def is_number(n):
+    return str(n) == str(n)[::-1]
+def reverse_number(n):
+    return int(str(n)[::-1])
+def counts(n):
+    count = 0
+    while not is_number(n):
+        n += reverse_number(n)
+        count += 1
+    return count,n
+n = int(input())
+#为了不用（，）这种形式，采用python中的拆包形式，就是将counts(n)中的第一个值赋给count，第二个值赋给number
+count,number=counts(n)
+print(count,number)

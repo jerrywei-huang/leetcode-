@@ -1,0 +1,12 @@
+def isnumber(num):
+    #转化成字符串
+    num_str = str(num)
+    #获取位数,只能获取字符串的位数
+    num_len = len(num_str)
+    sum_power = 0
+    for i in num_str:
+        sum_power += int(i) ** num_len
+    return sum_power == num
+for i in range(100,1000):
+    if isnumber(i):
+        print(i)

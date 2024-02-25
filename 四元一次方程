@@ -1,0 +1,31 @@
+"""
+对于一个非负整数 n, 四元一次方程：4w+3x+2y+z=n的非负整数解是不唯一的。
+
+编程计算不同解的个数。
+
+输入格式
+第 1 行：整数 T (1<=T<=10) 为问题数
+
+第 2 ∽ T+1行：每一个问题中的 n。
+
+输出格式
+对于每个问题，在一行中输出解的个数。
+"""
+def count_solutions(n):
+    count = 0
+    for z in range(n // 4 + 1):
+        for y in range((n - 4 * z) // 3 + 1):
+            for x in range((n - 4 * z - 3 * y) // 2 + 1):
+                w = n - 4 * z - 3 * y - 2 * x
+                if w >= 0:
+                    count += 1
+    return count
+
+T = int(input())
+results = []
+for _ in range(T):
+    n = int(input())
+    results.append(count_solutions(n))
+
+for result in results:
+    print(result)

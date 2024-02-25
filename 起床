@@ -1,0 +1,29 @@
+"""
+今天是小强的生日，小强一觉醒来，看着床边的闹钟上显示着一堆数字，哦，那是他为了锻炼数学思维新买的闹钟，这个闹钟只会显示秒数，也就是说，早上 1 点整它会显示为3600 
+，这下小强可晕了，早上刚起来一点数学能力也没有，只好请天才的程序员你设计一个程序把秒数转换为正常的时间。
+
+输入格式
+多组测试数据。
+
+每组数据给你一个数 n，表示秒数。
+n为-1 表示输入结束，并且不做处理。
+
+输出格式
+将它换算成时分秒的形式。时分秒均输出两位，不足的补 0。
+"""
+
+def convert_time(seconds):
+    hours = seconds // 3600
+    seconds %= 3600
+    minutes = seconds // 60
+    seconds %= 60
+    #{}表示占位符，0表示使用0来填充空白位置，2表示字符串长度2，d表示使用十进制
+    return "{:02d}:{:02d}:{:02d}".format(hours,minutes,seconds)
+inputs = []
+while True:
+    n = int(input())
+    if n == -1:
+        break
+    input.append(n)
+for n in inputs:
+    print(convert_time(n))
